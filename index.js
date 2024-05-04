@@ -5,10 +5,11 @@ require('dotenv').config();
 require("./database/config").dbConnection();
 
 // App de Express
+const app = express();
+//parseo body
 app.use(express.json());
 
-// lectura y parseo del body
-app.use(express.json);
+
 
 // Node Server
 const server = require('http').createServer(app);

@@ -1,16 +1,9 @@
-//  /api/login
-
-const {Router, response} = require("express");
+// path:  /api/login
+const {Router} = require("express");
+const { createUser } = require("../controllers/auth");
 
 const router = Router();
 
-router.post("/new", (reg, res = response) => {
-
-    res.json({
-        ok: true,
-        msg: "Create user"
-    })
-  
-});
+router.post("/new", createUser);
 
 module.exports = router;
