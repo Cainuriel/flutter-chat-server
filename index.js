@@ -5,7 +5,7 @@ require('dotenv').config();
 require("./database/config").dbConnection();
 
 // App de Express
-const app = express();
+app.use(express.json());
 
 // lectura y parseo del body
 app.use(express.json);
