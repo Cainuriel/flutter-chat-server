@@ -1,5 +1,6 @@
 const {response} = require("express");
 
+
 const createUser = (req, res=response) => {
 
     res.json({
@@ -12,3 +13,4 @@ const createUser = (req, res=response) => {
 module.exports = {
     createUser
 }
+
