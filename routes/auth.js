@@ -1,8 +1,9 @@
 // path:  /api/login
 const {Router} = require("express");
-const { createUser, login } = require("../controllers/auth");
+const { createUser, login, renewJWT } = require("../controllers/auth");
 const { check } = require("express-validator");
 const { validation } = require("../middlewares/validation");
+const { validationJWT } = require("../middlewares/jwt");
 
 const router = Router();
 
@@ -19,5 +20,7 @@ router.post("/", [
     check('email', 'email format must be correct').isEmail(),
     ], 
     login);
+
+router.get('/renew', validationJWT, renewJWT);
 
 module.exports = router;

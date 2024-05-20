@@ -82,7 +82,14 @@ const login = async (req, res=response) => {
 
 }
 
+const renewJWT = async (req, res=response) =>{
+    res.json({
+        ok: true,
+        message: req.uid
+    })
+}
+
 module.exports = {
-    createUser, login
+    createUser, login, renewJWT
 }
 
