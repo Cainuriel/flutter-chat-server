@@ -1,11 +1,15 @@
 const {response} = require("express");
+const User = require("../models/user");
 
 
-const createUser = (req, res=response) => {
+const createUser = async (req, res=response) => {
+
+    const userRequest = User(req.body);
+    await userRequest.save();
 
     res.json({
         ok: true,
-        msg: "Create user by controller"
+        msg: "Create user correctly"
     });
 
 }
