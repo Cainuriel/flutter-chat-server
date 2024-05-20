@@ -47,7 +47,42 @@ const createUser = async (req, res=response) => {
 
 }
 
+const login = async (req, res=response) => {
+
+    const {email, password} = req.body;
+
+
+    try {
+
+        const userLogin = await User.findOne({ email });
+       
+        if(!userLogin) return res.status(404).json({ok: false, message: "data incorrect"});
+         // validacion del pasword
+         const isValidPassword =  bcrypt.compareSync(password, userLogin.password);
+         if(!isValidPassword) return res.status(404).json({ok: false, message: "data incorrect"});
+          // generar JWT
+          const JWT = await generationJWT(userLogin.id);
+            return res.json({
+                    ok: true,
+                    usuario: userLogin,
+                    JWT
+                })
+        
+    } catch (error) {
+
+        console.log(`error en login`, error);
+        res.status(500).json({
+            ok: false,
+            message: "please, contact to the admin"
+        })
+
+        
+    }
+    
+
+}
+
 module.exports = {
-    createUser
+    createUser, login
 }
 
