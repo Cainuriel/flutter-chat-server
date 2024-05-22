@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const validationJWT = (req, res, next) => {
 
     const token = req.header('x-token');
-    if(!token) return res.status(401).json({ok: false, message: "No token"});
+    if(!token) return res.status(401).json({ok: false, msg: "No token"});
 
     try {
 
@@ -12,7 +12,7 @@ const validationJWT = (req, res, next) => {
         next(); 
     } catch (error) {
         console.log(`error validationJWT`, error );
-        return res.status(401).json({ok: false, message: "Invalid token"});
+        return res.status(401).json({ok: false, msg: "Invalid token"});
     }
      
 }

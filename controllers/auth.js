@@ -14,7 +14,7 @@ const createUser = async (req, res=response) => {
             return res.status(400).json(
                 {
                     ok: false,
-                    message: "inappropriate data for registration"
+                    msg: "inappropriate data for registration"
                 }
             )
         }   
@@ -30,7 +30,7 @@ const createUser = async (req, res=response) => {
 
         res.json({
             ok: true,
-            message: userRequest,
+            msg: userRequest,
             JWT
         });
         
@@ -38,7 +38,7 @@ const createUser = async (req, res=response) => {
         console.log(`error en createUser`, error);
         res.status(500).json({
             ok: false,
-            message: "please, contact to the admin"
+            msg: "please, contact to the admin"
         })
         
     }
@@ -56,10 +56,10 @@ const login = async (req, res=response) => {
 
         const userLogin = await User.findOne({ email });
        
-        if(!userLogin) return res.status(404).json({ok: false, message: "data incorrect"});
+        if(!userLogin) return res.status(404).json({ok: false, msg: "data incorrect"});
          // validacion del pasword
          const isValidPassword =  bcrypt.compareSync(password, userLogin.password);
-         if(!isValidPassword) return res.status(404).json({ok: false, message: "data incorrect"});
+         if(!isValidPassword) return res.status(404).json({ok: false, msg: "data incorrect"});
           // generar JWT
           const JWT = await generationJWT(userLogin.id);
             return res.json({
@@ -73,7 +73,7 @@ const login = async (req, res=response) => {
         console.log(`error en login`, error);
         res.status(500).json({
             ok: false,
-            message: "please, contact to the admin"
+            msg: "please, contact to the admin"
         })
 
         
