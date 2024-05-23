@@ -91,7 +91,7 @@ const renewJWT = async (req, res=response) =>{
 
     res.json({
         ok: true,
-        user,
+        msg: user,
         JWT: newToken
     })
 }
