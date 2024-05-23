@@ -1,3 +1,4 @@
+const { connectionUser } = require('../controllers/socket');
 const { io } = require('../index');
 const { checkJWT } = require('../middlewares/jwt');
 
@@ -13,9 +14,12 @@ io.on('connection', client => {
     if(!isValid) return client.disconnect();
 
     console.log(`socket autenticó cliente`);
+    connectionUser(uid, true);
 
     client.on('disconnect', () => {
         console.log('Cliente desconectado');
+        // ? el controlador connectionUser si es llamado sin pasar true como segundo argumento tiene por defecto la desconexión
+        connectionUser(uid);
     });
 
     // client.on('mensaje', ( payload ) => {
