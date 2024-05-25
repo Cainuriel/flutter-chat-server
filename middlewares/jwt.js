@@ -8,7 +8,7 @@ const validationJWT = (req, res, next) => {
     try {
 
         const { uid } = jwt.verify(token, process.env.JWT_KEY);
-        req.uid = uid;
+        req.uid = uid; // necesitamos la uid en el request
         next(); 
     } catch (error) {
         console.log(`error validationJWT`, error );
