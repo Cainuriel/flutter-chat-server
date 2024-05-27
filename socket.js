@@ -15,7 +15,7 @@ function addSocket(server) {
     // const [isValid, uid] = checkJWT(client.handshake.headers["x-token"]);
     // Bearer eXetruh3tgjke54lijeglkehg.5h55-ywh-4h5h5yhh
     const [isValid, uid] = checkJWT(
-      client.handshake.headers["Authorization"].split(" ")[1]
+      client.handshake.headers["socket-authorization"]
     );
     // console.log(`isValid, uid`, isValid, uid);
 
