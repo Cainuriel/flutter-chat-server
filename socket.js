@@ -1,5 +1,5 @@
 const { connectionUser } = require("./controllers/socket");
-const { checkJWT } = require("./middlewares/jwt");
+const { checkJWT } = require("./utils/jwt");
 const socketIO = require("socket.io");
 
 function socket(server) {
