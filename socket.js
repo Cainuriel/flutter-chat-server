@@ -2,7 +2,7 @@ const { connectionUser } = require("./controllers/socket");
 const { checkJWT } = require("./utils/jwt");
 const socketIO = require("socket.io");
 
-function socket(server) {
+function addSocket(server) {
   const io = socketIO(server);
 
   console.log("ejecutando socket");
@@ -39,4 +39,4 @@ function socket(server) {
   });
 }
 
-module.exports.socket = socket;
+module.exports.addSocket = addSocket;

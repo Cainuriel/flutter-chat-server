@@ -14,9 +14,11 @@ app.use(express.static(publicPath));
 app.use("/api/login", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
 
-const server = app.listen(process.env.PORT, (err) => {
-  if (err) throw new Error(err);
-  console.log("Servidor corriendo en puerto", process.env.PORT);
-});
+// const server = app.listen(process.env.PORT, (err) => {
+//   if (err) throw new Error(err);
+//   console.log("Servidor corriendo en puerto", process.env.PORT);
+// });
 
-module.exports.server = server; // esto es un servidor http con express montado en éste.
+// module.exports.server = server; // esto es un servidor http con express montado en éste.
+
+module.exports.app = app;
