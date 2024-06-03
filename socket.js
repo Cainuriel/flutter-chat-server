@@ -1,4 +1,4 @@
-const { connectionUser } = require("./controllers/socket");
+const { connectionUser, saveMessage } = require("./controllers/socket");
 const { checkJWT } = require("./utils/jwt");
 const socketIO = require("socket.io");
 
@@ -27,8 +27,8 @@ function addSocket(server) {
     // ingreso en sala personal
     client.join(uid);
     
-    client.on('personal-message', (payload) => {
-      console.log(`payload`, payload);
+    client.on('personal-message', async (payload) => {
+       await saveMessage( payload );
       io.to(payload.to).emit('personal-message', payload);
     })
     client.on("disconnect", () => {
