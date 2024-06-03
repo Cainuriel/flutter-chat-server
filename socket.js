@@ -24,6 +24,13 @@ function addSocket(server) {
     console.log(`socket autenticó cliente`);
     connectionUser(uid, true);
 
+    // ingreso en sala personal
+    client.join(uid);
+    
+    client.on('personal-message', (payload) => {
+      console.log(`payload`, payload);
+      io.to(payload.to).emit('personal-message', payload);
+    })
     client.on("disconnect", () => {
       console.log("Cliente desconectado");
       // ? el controlador connectionUser si es llamado sin pasar true como segundo argumento tiene por defecto la desconexión
